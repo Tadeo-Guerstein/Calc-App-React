@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "react-cal-app-tadeo",
+    "react-calculator-tadeo": "react-cal-app-tadeo"
+  },
+  "targets": {}
+}
