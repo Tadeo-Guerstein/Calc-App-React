@@ -1,5 +1,5 @@
 /* eslint no-eval: 0 */
-import React, { useState, FC } from 'react';
+import React, { useState, FC } from "react";
 import words from 'lodash.words';
 import Functions from './components/Functions'
 import MathOperations from './components/MathOperations'; //*los componentes se importan antes del CSS
@@ -21,18 +21,14 @@ const App: FC = () =>{//* es buena práctica que el nombre de la funcián se lla
     // Es similar a un if
     // esVerdadero ? (resultadoPorVerdadero) : (resultadoPorFalso)
 
-    const onClickOperation = operation => {
-        setStack(`${stack}${operation}`);
-    };
-    const onClickEqual = equal => {
+    const onClickEqual = () => {
         setStack(eval(stack).toString());
-    };
-    const onClickNumbers = number => {
-        setStack(`${stack}${number}`);
-    };
+    };       
+
     const onContentClear = () => {
         setStack("");
     };
+
     const onDelete = () => {
         if(stack.length > 0 ){
             const newStack = stack.substring(0, stack.length - 1)
@@ -43,9 +39,9 @@ const App: FC = () =>{//* es buena práctica que el nombre de la funcián se lla
     return(
         <main className='react-calculator'>
             <Result value = {value}/>
-            <Numbers onClickNumber={onClickNumbers}/>
+            <Numbers onClickNumber={number => setStack(`${stack}${number}`)}/>
             <Functions onContentClear={onContentClear} onDelete={onDelete}/>
-            <MathOperations onClickOperation={onClickOperation} onClickEqual={onClickEqual}/>
+            <MathOperations onClickOperation={operation => setStack(`${stack}${operation}`)} onClickEqual={onClickEqual}/>
         </main> //* el elemento main se utiliza para lo principal del documento
     )
 }  
